@@ -2,8 +2,8 @@
   <div class="test-header">
     <img alt="Test logo" src="../assets/logo.svg" />
     <div>
-      <router-link to="search">Поиск</router-link>
-      <router-link to="favorites">Избранное</router-link>
+      <router-link class="header_link_item" to="search">Поиск</router-link>
+      <router-link class="header_link_item" to="favorites">Избранное</router-link>
     </div>
   </div>
 </template>
@@ -24,5 +24,10 @@ export default {
   align-items: center;
   padding: 0 200px;
   box-sizing: border-box;
+  color: #fff;
+}
+
+.test-header .header_link_item{
+  margin-right: 10px;
 }
 </style>

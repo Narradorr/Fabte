@@ -43,8 +43,15 @@ export default {
       if (this.photo) {
         if (localStorage.getItem("LocalPhotos")) {
           let localPhotos = JSON.parse(localStorage.getItem("LocalPhotos"));
-          localPhotos.push(this.photo);
-          localStorage.LocalPhotos = JSON.stringify(localPhotos);
+
+
+          console.log(localPhotos.filter(e => e.id === this.photo.id).length);
+          console.log(this.photo.Id);
+
+          if (!localPhotos.filter(e => e.id === this.photo.id).length > 0) {
+             localPhotos.push(this.photo);
+             localStorage.LocalPhotos = JSON.stringify(localPhotos);
+          }
         } else {
           let localPhotos = [];
           localPhotos.push(this.photo);

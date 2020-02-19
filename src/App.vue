@@ -54,6 +54,14 @@ body {
   color: #2c3e50;
 }
 
+
+a,
+a:active,
+a:hover
+{
+  color: #fff;
+  text-decoration: none;
+}
 .photos_block {
   background-color: #f4f4f4;
   padding: 50px;
