@@ -1,15 +1,10 @@
 <template>
   <div>
     <div class="test-search">
-      <input type="search" placeholder="Поиск" v-model="search" />
-      <div
-        style="
-      width: 30px;
-      height: 30px;
-      background-color: red;
-     "
-        @click="onSearchFromUnsplash"
-      ></div>
+      <input type="text" name="searchText" id="searchText" placeholder="Поиск" v-model="search" />
+      <div class="search_btn" @click="onSearchFromUnsplash">
+        <img src="../assets/search.svg" alt />
+      </div>
     </div>
     <div class="photos_block">
       <div
@@ -18,7 +13,10 @@
         v-bind:key="photo.id"
         v-bind:style="{ backgroundImage: 'url(' + photo.urls.regular + ')'}"
       >
-        <router-link :to="{name: 'ImageDetails', params: {id: photo.id, photo: photo}}" style="width: 100%; height: 100%; display: block;"></router-link>
+        <router-link
+          :to="{name: 'ImageDetails', params: {id: photo.id, photo: photo}}"
+          style="width: 100%; height: 100%; display: block;"
+        ></router-link>
       </div>
     </div>
   </div>
@@ -41,7 +39,7 @@ export default {
   watch: {
     bottom(bottom) {
       if (bottom) {
-        this.getPhotos(this.currentPage + 1);
+        this.getPhotos(this.currentPage + 1, this.search);
       }
     }
   },
@@ -74,7 +72,7 @@ export default {
         .get("https://api.unsplash.com/search/photos", options)
         .then(function(response) {
           this.photos = this.photos.concat(response.data.results);
-          localStorage.photos =   this.photos;
+          localStorage.photos = this.photos;
           this.totalPhotos = parseInt(response.headers.get("x-total"));
           this.currentPage = page;
         }, console.log);
@@ -109,14 +107,80 @@ export default {
   position: relative;
 }
 
-.test-search input[type="search"] {
+.test-search input[type="text"] {
   width: 44%;
-  padding: 21px 39px;
+  padding: 20.5px 39px;
   font-family: SF UI Display;
   font-style: normal;
   font-weight: 300;
   font-size: 24px;
   line-height: 29px;
   color: #000000;
+  border: none;
+}
+
+.search_btn {
+  width: 70px;
+  background-color: #fff;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_btn:hover {
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.photos_block {
+  background-color: #f4f4f4;
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photos_item {
+  padding: 3px;
+  margin: 14px;
+  width: 470px;
+  height: 440px;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.photos_item img {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .test-search {
+    padding: 0 18px;
+  }
+
+  .test-search input[type="text"] {
+    width: 85%;
+    padding: 20.5px;
+  }
+
+  .photos_block {
+    padding: 20px;
+  }
+
+  .photos_item {
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    width: 335.38px;
+    height: 321.24px;
+    box-shadow: none;
+  }
 }
 </style>

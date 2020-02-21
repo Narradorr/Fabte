@@ -46,6 +46,10 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -62,28 +66,5 @@ a:hover
   color: #fff;
   text-decoration: none;
 }
-.photos_block {
-  background-color: #f4f4f4;
-  padding: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 
-.photos_item {
-  padding: 3px;
-  margin: 14px;
-  width: 470px;
-  height: 440px;
-  overflow: hidden;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 8px;
- box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-.photos_item img {
-  min-width: 100%;
-  min-height: 100%;
-}
 </style>
